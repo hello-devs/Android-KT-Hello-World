@@ -9,20 +9,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var age: Int = 5
+        var age: Int = 10
         var name: String = "Bob"
-        var height: Float = 1.60F
 
-        println("${name} a ${age} ans")
+        println("string template simple: $name a $age ans")
+        println("string template complexe: ${name.toUpperCase()} a ${age + 5} ans")
+        println("Concatenation: \n"
+                + name + " a " + age + "ans")
 
-        age = age + 2
+        println("""Raw string: 
+Nom: $name
+Age: $age
+        """)
 
-        println("il a maintenant ${age} ans")
+        println("""Raw string trim:
+            |Nom: $name
+            |Age: $age
+        """.trimMargin())
 
-        age *= 2
-
-        println("puis ${age} ans")
-        println("puis ${height} ans")
+        println("""Raw string trim2:
+            >Nom: $name
+            >Age: $age
+        """.trimMargin(">"))
 
     }
 }
