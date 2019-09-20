@@ -2,26 +2,7 @@ package com.hellodevs.training.helloworld
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
-
-//Déclaration de fonction
-fun isOldEnough(age: Int): Boolean {
-    return  age >= 5
-}
-
-//Syntaxe courte fonction 1 ligne:
-fun isOldEnough2(age: Int): Boolean = age >= 5
-
-fun describePeople(age: Int, name: String, height: Float){
-    val canPlaySentence = when (isOldEnough2(age)){
-        true -> "peut jouer basketball"
-        false -> "ne peut pas jouer basketball"
-    }
-    println("$name a $age ans et mesure ${height}m et $canPlaySentence")
-
-}
-
-
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,22 +10,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var age = 5
-        var name = "Jul"
-        var height = 1.60F
+        //TABLEAU
 
-        var canPlayBasket = isOldEnough(4)
-        var canPlayBasket2 = isOldEnough2(10)
+        //Syntaxe constructeur
+        val array :Array<Int> =  Array<Int>(3) { 0 }
+        println(Arrays.toString(array))
 
-        println(canPlayBasket)
-        println(canPlayBasket2)
+        val names = Array<String>(3) {""}
+        names.set(0, "Bob")
+        names[1] = "John"
+        println(names.get(0))
+        println(names[1])
 
-        describePeople(age, name, height)
+        //Factoy Function
+        val ages= arrayOf(4, 7, 55)
+        println("le troisieme élément est ${ages[2]}")
 
-        age = 4
-        name = "Martin"
-        height = 1.10F
 
-        describePeople(age, name, height)
     }
 }
