@@ -10,68 +10,43 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //TABLEAU
+        //while(){...}  /  do{...}while()  /  break
 
-        //Syntaxe constructeur
-        val array :Array<Int> =  Array<Int>(3) { 0 }
 
-        val names = Array<String>(3) {""}
-        names.set(0, "Bob")
-        names[1] = "John"
+         //while
+        var unreadEmailCount = 3
 
-        //Factoy Function
-        val ages= arrayOf(4, 7, 15, 35, 44, 55)
-
-        //Boucle For
-
-        //For avec range
-        for (i in 1..5){
-            println(i)
+        while(unreadEmailCount > 0){
+            println("Vérification des emails en cours...")
+            println("Vous avez $unreadEmailCount non lus")
+            unreadEmailCount--
         }
 
-        println("--")
+        println("--\n--")
 
-        //For avec range et step
-        for (i in 1..5 step 2){
-            println(i)
-        }
+        //do while
+        unreadEmailCount = 0
 
-        println("--")
+        do{
+            println("Vérification des emails en cours...")
+            println("Vous avez $unreadEmailCount non lus")
+            unreadEmailCount--
+        }while(unreadEmailCount > 0)
 
-        //For avec range (downto)
-        for (i in 5 downTo 1){
-            println(i)
-        }
+        println("--\n--")
 
-        println("--")
+        //break
+        unreadEmailCount = 3
+        var notificationEnabled: Boolean = false
 
-        //For avec range (downto)
-        for (i in 5 downTo 1 step 2){
-            println(i)
-        }
-
-        println("--")
-
-        //foreach
-        for (age in ages){
-            println(age)
-        }
-
-        println("--")
-
-        //foreach avec index
-        for ((index, age) in ages.withIndex()){
-            println("$age est a l'index $index")
-        }
-
-        //continue
-        for (age in ages){
-            if(age == 44) {
-                println("On affiche ceci puis on passe au tour de boucle suivant")
-                continue
+        do{
+            println("Vérification des emails en cours...")
+            if (!notificationEnabled) {
+                break
             }
-            println(age)
-        }
+            println("Vous avez $unreadEmailCount non lus")
+            unreadEmailCount--
+        }while(unreadEmailCount > 0)
 
     }
 }
