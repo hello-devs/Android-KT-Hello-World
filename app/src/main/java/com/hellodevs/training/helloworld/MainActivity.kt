@@ -2,8 +2,24 @@ package com.hellodevs.training.helloworld
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.hellodevs.training.helloworld.common.*       //import de variable
-import java.util.*
+
+//Intro POO déclaration de class
+
+class Car(val wheelsCount: Int){
+    fun honk(){
+        println("buzz")
+    }
+
+    fun honkForWheels(){
+        println("honkForWells")
+
+        for(i in 1..wheelsCount){
+            honk()
+        }
+    }
+}
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,14 +27,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //voir le fichier common/utils.kt
 
-        println(name)
-//      println(age)                                    //impossible privé
+        val car = Car(4)
+        println("la voiture a ${car.wheelsCount} roues")
 
-//        name2 = "Jul"                                 //impossible setter privé
-        println(name2)
-
-        describePerson()
+        car.honk()
+        car.honkForWheels()
     }
 }
