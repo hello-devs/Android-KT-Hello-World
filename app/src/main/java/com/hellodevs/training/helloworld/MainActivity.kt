@@ -3,26 +3,24 @@ package com.hellodevs.training.helloworld
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-//POO constructeur de class
+//POO héritage de class
 
-class User(
-    val name: String,
-    val age: Int,
-    val height: Float
-) {
+open class Vehicle(val wheelsCount: Int) {   //Le mot clef open permet de rendre la classe heritable
 
-    val canPlayBasketball = age >= 5 && height >= 1.50f
-
-    init {
-        val basketString = when (canPlayBasketball) {
-            true -> "est dans l'équipe de basketball"
-            false -> "ne peut pas jouer au basketball"
-        }
-        println("$name a $age ans et $basketString")
-
+    open fun describeVehicle(){
+        println("Ce véhicule a $wheelsCount roues")
     }
-    constructor(name: String): this(name, 5, 1.2f)
+}
 
+class Car: Vehicle(4)
+
+class Motorcycle: Vehicle(2)
+{
+    val vehicleName = "moto"
+
+    override fun describeVehicle() {
+        println("Ce véhicule a $wheelsCount roues c'est une $vehicleName")
+    }
 }
 
 
@@ -32,7 +30,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val jerome = User("Jérome", 15, 1.85f)  //
-        val bobette = User("Bobette")                       //Fait appel au construceur sec pour les valeur manquante
+
+        val vehicle1 = Car()
+        vehicle1.describeVehicle()
+
+        val vehicle2: Vehicle = Motorcycle()
+        vehicle2.describeVehicle()
+
+
     }
 }
