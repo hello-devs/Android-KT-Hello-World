@@ -3,23 +3,30 @@ package com.hellodevs.training.helloworld
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-//POO héritage de class
+//POO Encapsulation
 
-open class Vehicle(val wheelsCount: Int) {   //Le mot clef open permet de rendre la classe heritable
+open class Account(){
 
-    open fun describeVehicle(){
-        println("Ce véhicule a $wheelsCount roues")
+    protected var balance: Int = 0
+
+    open fun operation(value: Int){
+        balance += value
+        var prefix = if(value >= 0) "+" else ""
+        println("$prefix$value € sur le compte. Solde: $balance")
     }
 }
 
-class Car: Vehicle(4)
+class PositiveAccount : Account(){
+    override fun operation(value: Int) {
+        if(!isValidOperation(value)){
+            println("Découvert non autorisé sur ce compte\"positive account\"")
+            return
+        }
+        super.operation(value)
+    }
 
-class Motorcycle: Vehicle(2)
-{
-    val vehicleName = "moto"
-
-    override fun describeVehicle() {
-        println("Ce véhicule a $wheelsCount roues c'est une $vehicleName")
+    private fun isValidOperation(value: Int): Boolean{
+        return 0 <= balance + value
     }
 }
 
@@ -30,13 +37,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        println("Account:")
+        val account = Account()
+        account.operation(100)
+        account.operation(-200)
 
-        val vehicle1 = Car()
-        vehicle1.describeVehicle()
-
-        val vehicle2: Vehicle = Motorcycle()
-        vehicle2.describeVehicle()
-
+        println("PositiveAccount:")
+        val positiveAccount = PositiveAccount()
+        positiveAccount.operation(50)
+        positiveAccount.operation(-200)
+        positiveAccount.operation(-20)
 
     }
 }
