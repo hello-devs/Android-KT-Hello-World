@@ -3,33 +3,67 @@ package com.hellodevs.training.helloworld
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-//POO Encapsulation
+//POO Cast et verification de type
 
-open class Account(){
+abstract class Vehicle(private val wheelsCount: Int) {
+    fun showWheels() {
+        println("Nombre de roues : $wheelsCount")
+    }
 
-    protected var balance: Int = 0
+    abstract fun honk()
+}
 
-    open fun operation(value: Int){
-        balance += value
-        var prefix = if(value >= 0) "+" else ""
-        println("$prefix$value € sur le compte. Solde: $balance")
+interface Fuel {
+    var fuelGauge: Double
+
+    fun fillGasTank() {
+        println("Remplissage du réservoir à essence...")
+        fuelGauge = 100.0
+    }
+
+    fun displayGasGauge() {
+        println("La jauge est à $fuelGauge %")
     }
 }
 
-class PositiveAccount : Account(){
-    override fun operation(value: Int) {
-        if(!isValidOperation(value)){
-            println("Découvert non autorisé sur ce compte\"positive account\"")
-            return
-        }
-        super.operation(value)
-    }
+interface Trick {
+    fun wheeling()
+}
 
-    private fun isValidOperation(value: Int): Boolean{
-        return 0 <= balance + value
+class Car : Vehicle(4), Fuel {
+    override var fuelGauge: Double = 0.0
+
+    override fun honk() {
+        println("Pouet!")
     }
 }
 
+class Motorcycle : Vehicle(2), Fuel, Trick {
+    override var fuelGauge: Double = 0.0
+
+    override fun honk() {
+        println("Tsouin!")
+    }
+
+    override fun wheeling() {
+        println("Roue arriere en moto !")
+    }
+
+    override fun fillGasTank() {
+        super.fillGasTank()
+        honk()
+    }
+}
+
+class Bicycle : Vehicle(2), Trick {
+    override fun wheeling() {
+        println("Roue arrière en vélo !")
+    }
+
+    override fun honk() {
+        println("Tut!")
+    }
+}
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,16 +71,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        println("Account:")
-        val account = Account()
-        account.operation(100)
-        account.operation(-200)
+        var v: Vehicle = Motorcycle()
 
-        println("PositiveAccount:")
-        val positiveAccount = PositiveAccount()
-        positiveAccount.operation(50)
-        positiveAccount.operation(-200)
-        positiveAccount.operation(-20)
+//        if (v is Vehicle) {
+        print("v est un Vehicle")       //sans ln pas de retour a la ligne dond print en 2 partie
 
+        when (v) {
+            is Car -> println(" de type Car")
+            is Motorcycle -> println(" de type Motorcycle")
+            is Bicycle -> println(" de type Bicycle")
+        }
+//        }
+
+        //v.wheeling()
+        if (v is Trick) {
+            v.wheeling()
+        } else {
+            println("v ne peux pas faire de figure")
+        }
+
+        val bike: Bicycle? = v as? Bicycle
+        bike?.wheeling()
+
+        (v as? Bicycle)?.wheeling()  //sur une ligne
     }
 }
