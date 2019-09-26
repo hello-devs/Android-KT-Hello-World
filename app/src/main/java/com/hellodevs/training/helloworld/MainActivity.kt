@@ -3,17 +3,20 @@ package com.hellodevs.training.helloworld
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-//POO Inner class
-//L'Inner class a accès aux méthodes et variables membres de l'Outer class
-//Elle est dépendante de l'Outer class contrairement au Nested class
-class Car (val wheelsCount: Int){
+//POO Generics function
 
+fun <T> printArrayInversed(array: Array<T>){  //Le type du tableau est générique (String, Int, Float...)
 
-    inner class Engine {
-        fun displayHorsePower(){
-            println("Cette voiture à ${wheelsCount * 16 }chevaux")
-        }
+    val sb = StringBuilder()
+    var separator = ""
+
+    for (i in array.indices.reversed()){
+        sb.append(separator)
+        sb.append(array[i])
+
+        separator = ", "
     }
+    println(sb.toString())
 
 }
 
@@ -23,10 +26,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val car = Car(4)
-        val engine = car.Engine()
-        engine.displayHorsePower()
+        val integers = arrayOf(1, 2, 3, 4)
+        val strings: Array<String> = arrayOf("Hello", "World", "in", "Kotlin")
 
+        printArrayInversed(integers)
+        printArrayInversed(strings)
 
     }
 }
