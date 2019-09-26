@@ -3,20 +3,18 @@ package com.hellodevs.training.helloworld
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-//POO Generics function
+//POO Generics class
+//On peut restreindre à des types spécifique : <T: Number>
 
-fun <T> printArrayInversed(array: Array<T>){  //Le type du tableau est générique (String, Int, Float...)
+class Box<T> (var value: T){
 
-    val sb = StringBuilder()
-    var separator = ""
-
-    for (i in array.indices.reversed()){
-        sb.append(separator)
-        sb.append(array[i])
-
-        separator = ", "
+    fun set(newValue: T){
+        value = newValue
     }
-    println(sb.toString())
+
+    fun get(): T{
+        return value
+    }
 
 }
 
@@ -26,11 +24,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val integers = arrayOf(1, 2, 3, 4)
-        val strings: Array<String> = arrayOf("Hello", "World", "in", "Kotlin")
+        val boxInt = Box<Int>(2)
+        val v: Int = boxInt.get()
+        println("Box value: $v")
 
-        printArrayInversed(integers)
-        printArrayInversed(strings)
+        val boxString = Box<String>("Kotlin")
+        println("Box value: ${boxString.get()}")
+        boxString.set("Java")
+        println("Box value: ${boxString.get()}")
 
     }
 }
