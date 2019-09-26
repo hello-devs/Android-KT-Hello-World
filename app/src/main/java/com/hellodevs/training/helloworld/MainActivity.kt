@@ -3,12 +3,18 @@ package com.hellodevs.training.helloworld
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-//POO data Class
-//Des méthodes sont auto-générées par Kotlin
-data class User(val name: String, val age: Int){
-    override fun toString(): String {               //On peut surcharger les fonction auto-générées
-        return "name: $name - age: $age"
+//POO Nested class
+
+class Bag (itemsCount: Int){
+
+    val items = arrayOfNulls<Item>(itemsCount)
+
+    class Item(val weight: Int){
+        fun showWeight(){
+            println("Cet item pèse ${weight}kg")
+        }
     }
+
 }
 
 class MainActivity : AppCompatActivity() {
@@ -17,19 +23,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bob = User("Bob", 10)
-        println("Informations sur Bob:\n$bob")
+        val bag = Bag(2)
 
-        val bobette = User("Bobette", 4)
-        println("Informations sur Bobette:\n$bobette")
+        val firstItem = Bag.Item(50) //l'item n'est pas lié au sac
 
-        val john = bobette.copy(name = "john")      //fonction copy auto-générée par kotlin
-        println("Informations sur John:\n$john")
+        bag.items[1] = Bag.Item(200)
 
-        if (bobette == john){     //génération automatique de la fonctions equals() qui vérifie champs à champs
-            println("Les utilisateurs sont identiques")
-        } else {
-            println("Les utilisateurs sont différents")
-        }
+        print("firstItem: ")
+        firstItem.showWeight()
+
+        print("bag.items[0]: null\n")
+        bag.items[0]?.showWeight()
+
+        print("bag.items[1]: ")
+        bag.items[1]?.showWeight()
+
+        bag.items[0] = firstItem        //On attribut l'item au sac
+        print("bag.items[0] ")
+        bag.items[0]?.showWeight()
     }
 }
