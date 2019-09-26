@@ -3,19 +3,12 @@ package com.hellodevs.training.helloworld
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-//POO Generics class
-//On peut restreindre à des types spécifique : <T: Number>
+//POO lateinit
+//Conditions: membre d'une classe && pas dans le constructeur primaire && pas primitive &&
 
-class Box<T> (var value: T){
+class User(val name: String, val age: Int){
 
-    fun set(newValue: T){
-        value = newValue
-    }
-
-    fun get(): T{
-        return value
-    }
-
+    lateinit var nickname: String
 }
 
 class MainActivity : AppCompatActivity() {
@@ -24,14 +17,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val boxInt = Box<Int>(2)
-        val v: Int = boxInt.get()
-        println("Box value: $v")
+        val john = User("John", 15)
 
-        val boxString = Box<String>("Kotlin")
-        println("Box value: ${boxString.get()}")
-        boxString.set("Java")
-        println("Box value: ${boxString.get()}")
+        john.nickname = "JFK"
+        println("Surnom de John: ${john.nickname}")
 
     }
 }
