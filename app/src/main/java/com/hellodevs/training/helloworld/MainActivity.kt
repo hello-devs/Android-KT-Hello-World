@@ -3,15 +3,15 @@ package com.hellodevs.training.helloworld
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-//POO Nested class
+//POO Inner class
+//L'Inner class a accès aux méthodes et variables membres de l'Outer class
+//Elle est dépendante de l'Outer class contrairement au Nested class
+class Car (val wheelsCount: Int){
 
-class Bag (itemsCount: Int){
 
-    val items = arrayOfNulls<Item>(itemsCount)
-
-    class Item(val weight: Int){
-        fun showWeight(){
-            println("Cet item pèse ${weight}kg")
+    inner class Engine {
+        fun displayHorsePower(){
+            println("Cette voiture à ${wheelsCount * 16 }chevaux")
         }
     }
 
@@ -23,23 +23,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bag = Bag(2)
+        val car = Car(4)
+        val engine = car.Engine()
+        engine.displayHorsePower()
 
-        val firstItem = Bag.Item(50) //l'item n'est pas lié au sac
 
-        bag.items[1] = Bag.Item(200)
-
-        print("firstItem: ")
-        firstItem.showWeight()
-
-        print("bag.items[0]: null\n")
-        bag.items[0]?.showWeight()
-
-        print("bag.items[1]: ")
-        bag.items[1]?.showWeight()
-
-        bag.items[0] = firstItem        //On attribut l'item au sac
-        print("bag.items[0] ")
-        bag.items[0]?.showWeight()
     }
 }
