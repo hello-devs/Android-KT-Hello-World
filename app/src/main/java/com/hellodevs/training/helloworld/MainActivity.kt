@@ -3,13 +3,21 @@ package com.hellodevs.training.helloworld
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-//POO lateinit
-//Conditions: membre d'une classe && pas dans le constructeur primaire && pas primitive &&
+//POO Companion Object(singleton)
 
-class User(val name: String, val age: Int){
+abstract class Vehicle(val wheelsCount: Int){
 
-    lateinit var nickname: String
+    companion object Factory{                       //Le nommage n'est pas obligatoire
+        fun createCar() = Car(4)
+        fun createMotorcycle() = Car(2)
+    }
+
+
 }
+
+class Car(wheelsCount:Int): Vehicle(wheelsCount)
+
+class Motorcycle(wheelsCount:Int): Vehicle(wheelsCount)
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,10 +25,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val john = User("John", 15)
-
-        john.nickname = "JFK"
-        println("Surnom de John: ${john.nickname}")
+        val car = Vehicle.createCar()
+        val motorcycle = Vehicle.Factory.createMotorcycle()
 
     }
 }
