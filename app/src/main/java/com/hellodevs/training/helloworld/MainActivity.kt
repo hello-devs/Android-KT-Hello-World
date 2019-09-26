@@ -2,22 +2,9 @@ package com.hellodevs.training.helloworld
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 
-//POO Companion Object(singleton)
-
-abstract class Vehicle(val wheelsCount: Int){
-
-    companion object Factory{                       //Le nommage n'est pas obligatoire
-        fun createCar() = Car(4)
-        fun createMotorcycle() = Car(2)
-    }
-
-
-}
-
-class Car(wheelsCount:Int): Vehicle(wheelsCount)
-
-class Motorcycle(wheelsCount:Int): Vehicle(wheelsCount)
+//POO Cohabitation Kotlin - Java
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,8 +12,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val car = Vehicle.createCar()
-        val motorcycle = Vehicle.Factory.createMotorcycle()
+        val bob = User()
+        bob.age = 5  //Kotlin detecte automatiquement les getters et setters
+        bob.name = "Bob"
 
+        Log.i("MainActivity", "L'adresse de bob est ${bob.address}")
     }
 }
