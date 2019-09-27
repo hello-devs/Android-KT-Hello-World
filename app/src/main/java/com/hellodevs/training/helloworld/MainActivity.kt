@@ -1,5 +1,6 @@
 package com.hellodevs.training.helloworld
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -18,6 +19,9 @@ class MainActivity : AppCompatActivity() {
 
         start_activity_green_btn.setOnClickListener {
             println("start activity green button clicked")
+
+            val intent = Intent(this, GreenActivity::class.java)
+            startActivity(intent)
         }
 
     }
