@@ -2,9 +2,10 @@ package com.hellodevs.training.helloworld
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main.*
 
-//POO Cohabitation Kotlin - Java
+//ANDROID OS: Activity
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,10 +13,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bob = User()
-        bob.age = 5  //Kotlin detecte automatiquement les getters et setters
-        bob.name = "Bob"
+//        val helloWorldText: TextView = findViewById<TextView>(R.id.helloWorldText) //nouvelle syntaxe Kotlin:
+        helloWorldText.text = "Hello World from hello-devs"
 
-        Log.i("MainActivity", "L'adresse de bob est ${bob.address}")
+        start_activity_green_btn.setOnClickListener {
+            println("start activity green button clicked")
+        }
+
     }
 }
