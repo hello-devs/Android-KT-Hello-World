@@ -1,28 +1,40 @@
 package com.hellodevs.training.helloworld
 
-import android.content.Intent
+
+import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.*
+import android.util.Log
 
-//ANDROID OS: Activity
+//ANDROID OS: Logcat
 
 class MainActivity : AppCompatActivity() {
+
+    val TAG = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val helloWorldText: TextView = findViewById<TextView>(R.id.helloWorldText) //nouvelle syntaxe Kotlin:
-        helloWorldText.text = "Hello World from hello-devs"
+        Log.v(TAG,"Verbose message")
+        Log.d(TAG,"Debug message")
+        Log.i(TAG,"Info message")
+        Log.w(TAG,"Warning message")
+        Log.e(TAG,"Error message")
+        Log.println(Log.ASSERT,TAG,"Assert message")
 
-        start_activity_green_btn.setOnClickListener {
-            println("start activity green button clicked")
+        val testLogger = TestLogger()
+        testLogger.myTestFunc()
 
-            val intent = Intent(this, GreenActivity::class.java)
-            startActivity(intent)
-        }
 
+    }
+}
+
+class TestLogger {
+
+    val TAG = TestLogger::class.java.simpleName //Renvoi le nom de la class
+
+    fun myTestFunc(){
+        Log.i(TAG, "myTestFunc message")
     }
 }
