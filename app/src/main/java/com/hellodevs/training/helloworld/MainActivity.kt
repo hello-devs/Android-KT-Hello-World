@@ -1,12 +1,12 @@
 package com.hellodevs.training.helloworld
 
 
-import android.nfc.Tag
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import kotlinx.android.synthetic.main.activity_main.*
 
-//ANDROID OS: Logcat
+//ANDROID OS: Intent
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,25 +16,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.v(TAG,"Verbose message")
-        Log.d(TAG,"Debug message")
-        Log.i(TAG,"Info message")
-        Log.w(TAG,"Warning message")
-        Log.e(TAG,"Error message")
-        Log.println(Log.ASSERT,TAG,"Assert message")
+        start_activity_green_btn.setOnClickListener {
 
-        val testLogger = TestLogger()
-        testLogger.myTestFunc()
+            val intent = Intent(this, GreenActivity::class.java)
+
+            intent.action = Intent.ACTION_VIEW
+            intent.addCategory("UserViewer")
+            intent.putExtra("name", "bob")
+            intent.putExtra("age", 15)
+
+            startActivity(intent)
+        }
+
+
+
 
 
     }
 }
 
-class TestLogger {
-
-    val TAG = TestLogger::class.java.simpleName //Renvoi le nom de la class
-
-    fun myTestFunc(){
-        Log.i(TAG, "myTestFunc message")
-    }
-}
