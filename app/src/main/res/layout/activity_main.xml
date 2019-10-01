@@ -5,19 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
-
-    <TextView
-        android:id="@+id/helloWorldText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World from Kotlin MainActivity"/>
+    tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/start_activity_green_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Green Activity"
-        android:textSize="20dp"/>
+        android:text="wrap content"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="match parent horizontale"/>
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:textSize="20dp"
+        android:text="dp unit"/>
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:textSize="20sp"
+        android:text="sp text unit"/>
+    <!--Permet à l'utilisateur de modifier la taille de la police dans les paramètre-->
 
 </LinearLayout>
