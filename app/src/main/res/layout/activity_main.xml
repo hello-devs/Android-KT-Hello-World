@@ -7,24 +7,15 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="wrap content"/>
-    <Button
+    <!--Inclusion d'un layout -->
+    <include layout="@layout/linear_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="match parent horizontale"/>
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:textSize="20dp"
-        android:text="dp unit"/>
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:textSize="20sp"
-        android:text="sp text unit"/>
-    <!--Permet à l'utilisateur de modifier la taille de la police dans les paramètre-->
+        android:layout_height="wrap_content"/>
+
+    <include layout="@layout/linear_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
 
 </LinearLayout>
