@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 
-//ANDROID OS: Layout 1/2
+//ANDROID OS: Layout 2/2
 
 class MainActivity : AppCompatActivity() {
 

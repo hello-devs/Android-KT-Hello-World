@@ -8,14 +8,20 @@
     tools:context=".MainActivity">
 
     <!--Inclusion d'un layout -->
-    <include layout="@layout/linear_horizontal"
+    <include
+        layout="@layout/linear_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
-    <include layout="@layout/linear_vertical"
+    <include
+        layout="@layout/linear_vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
+    <include
+        layout="@layout/relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>
