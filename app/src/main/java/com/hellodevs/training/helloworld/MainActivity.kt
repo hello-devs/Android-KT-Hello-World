@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity() {
             fragment.listener = object: ConfirmDeleteDialogFragment.ConfirmDeleteListener {
                 override fun onDialogPositiveClick() {
                     Log.i(TAG,"onDialogPositiveClick")
+
+                    val fileListFragment = FileListDialogFragment()
+                    fileListFragment.show(supportFragmentManager,"fileList")
                 }
 
                 override fun onDialogNegativeClick() {
