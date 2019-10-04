@@ -8,51 +8,15 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/show_dialog_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="Mute"/>
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/mute"
-        android:text="Mute"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:drawableLeft="@drawable/mute"
-        android:text="Mute"/>
-
-    <TextView
-        android:id="@+id/textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ceci est un TextView"
-        android:textSize="20dp"
-        android:textColor="@color/colorAlert"
-        android:textStyle="bold|italic"/>
-
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/mute"/>
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Autoriser"
-        android:checked="true"/>
-
-    <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.hellodevs.training.helloworld.MyButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="C'est mon bouton personnalisées"/>
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:text="@string/btn_show_dialog"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="#fff"
+        android:padding="5dp"/>
 
 
 </LinearLayout>

@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 
-//ANDROID OS: Composant de l'interface
+//ANDROID OS: Dialog (modal)
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,8 +16,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        textview.setOnClickListener {
-            Log.i(TAG,"textview a été cliqué")
+
+        show_dialog_button.setOnClickListener {
+
+            val fragment = ConfirmDeleteDialogFragment()
+            fragment.listener = object: ConfirmDeleteDialogFragment.ConfirmDeleteListener {
+                override fun onDialogPositiveClick() {
+                    Log.i(TAG,"onDialogPositiveClick")
+                }
+
+                override fun onDialogNegativeClick() {
+                    Log.i(TAG, "onDialogNegativeClick")
+                }
+
+            }
+            fragment.show(supportFragmentManager, "confirmDelete")
         }
 
 
