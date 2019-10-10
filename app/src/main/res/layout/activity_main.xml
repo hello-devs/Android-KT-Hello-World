@@ -7,16 +7,6 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/show_dialog_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center"
-        android:text="@string/btn_show_dialog"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="#fff"
-        android:padding="5dp"/>
 
 
 </LinearLayout>
