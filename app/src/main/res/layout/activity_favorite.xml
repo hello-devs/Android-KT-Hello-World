@@ -4,20 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hellodevs.training.helloworld.MainActivity"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    tools:context="com.hellodevs.training.helloworld.FavoriteActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimaryDark"/>
+        android:background="?attr/colorPrimary"
+        app:title="Android / Kotlin favorite" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/TitleFont"
-        android:text="Hello World!" />
 
 
 </LinearLayout>
