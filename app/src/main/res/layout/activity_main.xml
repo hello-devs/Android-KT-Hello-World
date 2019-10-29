@@ -6,18 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.hellodevs.training.helloworld.MainActivity" >
 
-    <Button
-        android:id="@+id/update_countries_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="Maj Pays"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/countries_recycler_view"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/update_countries_btn"/>
-
+        android:text="Hello Devs"
+        android:gravity="center" />
 
 </RelativeLayout>

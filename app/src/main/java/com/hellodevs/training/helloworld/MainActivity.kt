@@ -1,82 +1,77 @@
 package com.hellodevs.training.helloworld
 
+//Kotlin+ : Enum Class
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.app.AppCompatActivity
+
+enum class Direction(val description: String){
+    NORTH("NORD"){
+        override fun action() = "marcher"
+    },
+    EAST("EST"){
+        override fun action() = "courrir"
+    },
+    SOUTH("SUD"){
+        override fun action() = "danser"
+    },
+    WEST("OUEST"){
+        override fun action() = "sauter"
+    };
+
+    abstract fun action(): String
+
+    override fun toString(): String {
+        return "name: $name (description= $description), action: ${this.action()}"
+    }
+}
+
+fun logAction(windDirection: Direction){
+    val action = when(windDirection){
+        Direction.NORTH -> "marcher"
+        Direction.EAST -> "courir"
+        Direction.SOUTH -> "danser"
+        Direction.WEST -> "sauter"
+    }
+
+    println("Vent du ${windDirection.description}, action = $action")
+
+    println("Direction.action() -> ${windDirection.action()}")
+}
 
 
-//ANDROID OS: RecyclerView 2/2
-class MainActivity : AppCompatActivity(), View.OnClickListener {
-
-    var countries = arrayOf<String>("Afghanistan","Albania","Algeria","Andorra","Angola",
-        "Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria",
-        "Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize",
-        "Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil",
-        "British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon",
-        "Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands",
-        "Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic",
-        "Denmark","Djibouti","Dominica","Dominican Republic", "Ecuador","Egypt","El Salvador",
-        "Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland",
-        "France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany",
-        "Ghana","Gibraltar","Greece","Greenland", "Grenada","Guam","Guatemala","Guernsey","Guinea",
-        "Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland",
-        "India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica",
-        "Japan","Jersey","Jordan","Kazakhstan", "Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia",
-        "Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau",
-        "Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania",
-        "Mauritius","Mexico","Moldova","Monaco", "Mongolia","Montenegro","Montserrat","Morocco",
-        "Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia",
-        "New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine",
-        "Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal",
-        "Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon",
-        "Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone",
-        "Singapore","Slovakia","Slovenia","South Africa", "South Korea","Spain","Sri Lanka",
-        "St Kitts & Nevis", "St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland",
-        "Sweden", "Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este",
-        "Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey", "Turkmenistan","Turks & Caicos",
-        "Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela",
-        "Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe")
+class MainActivity : AppCompatActivity(){
 
     val TAG = "MainActivity"
-
-    val adapter = CountryAdapter(countries, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        countries_recycler_view.layoutManager = LinearLayoutManager(this)
-        countries_recycler_view.adapter = adapter
+        //Test instance, functions,
+        val windDirection = Direction.NORTH
+        logAction(windDirection)
 
-        update_countries_btn.setOnClickListener {
-            updateCountries()
-        }
-    }
+        //Test  name, ordinal
+        val southName = Direction.SOUTH.name
+        val southOrdinal: Int = Direction.SOUTH.ordinal
+        println("Direction.name: $southName")
+        println("Direction.ordinal: $southOrdinal")
 
-    override fun onClick(view: View) {
-        if (view.tag != null){
-            val index= view.tag as Int
-            val country = countries[index]
-            Toast.makeText(this, "Le pays sélectionné est $country", Toast.LENGTH_SHORT).show()
-        }
-    }
+        //Instantiation with name, ordinal
+        val southDirection = Direction.valueOf(southName)
+        val southDirectionFromOrdinal = Direction.values()[southOrdinal]
 
-    fun updateCountries() {
-        val lastLetter = countries[0].last()
-
-        for ((index,country) in countries.withIndex()){
-            if(lastLetter.isUpperCase()){
-                countries[index] = country.toLowerCase().capitalize()
-            }else{
-                countries[index] = country.toUpperCase()
-            }
+        //Parcours
+        for(direction in Direction.values()){
+            println(direction)
         }
 
-        adapter.notifyDataSetChanged()
+
+
     }
 }
+
+
+
 
