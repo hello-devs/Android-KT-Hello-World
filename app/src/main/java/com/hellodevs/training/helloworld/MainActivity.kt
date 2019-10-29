@@ -1,43 +1,16 @@
 package com.hellodevs.training.helloworld
 
-//Kotlin+ : Enum Class
+//Kotlin+ : Sealed Class
+/*
+Ensembe de hierarchie de classe
+abstraite + membres abstraits
+Nombre d'enfants fixe et déclaré dans la classe
+Plusieurs instance possible de l'enfants
+*/
+
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-
-enum class Direction(val description: String){
-    NORTH("NORD"){
-        override fun action() = "marcher"
-    },
-    EAST("EST"){
-        override fun action() = "courrir"
-    },
-    SOUTH("SUD"){
-        override fun action() = "danser"
-    },
-    WEST("OUEST"){
-        override fun action() = "sauter"
-    };
-
-    abstract fun action(): String
-
-    override fun toString(): String {
-        return "name: $name (description= $description), action: ${this.action()}"
-    }
-}
-
-fun logAction(windDirection: Direction){
-    val action = when(windDirection){
-        Direction.NORTH -> "marcher"
-        Direction.EAST -> "courir"
-        Direction.SOUTH -> "danser"
-        Direction.WEST -> "sauter"
-    }
-
-    println("Vent du ${windDirection.description}, action = $action")
-
-    println("Direction.action() -> ${windDirection.action()}")
-}
 
 
 class MainActivity : AppCompatActivity(){
@@ -48,26 +21,14 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Test instance, functions,
-        val windDirection = Direction.NORTH
-        logAction(windDirection)
-
-        //Test  name, ordinal
-        val southName = Direction.SOUTH.name
-        val southOrdinal: Int = Direction.SOUTH.ordinal
-        println("Direction.name: $southName")
-        println("Direction.ordinal: $southOrdinal")
-
-        //Instantiation with name, ordinal
-        val southDirection = Direction.valueOf(southName)
-        val southDirectionFromOrdinal = Direction.values()[southOrdinal]
-
-        //Parcours
-        for(direction in Direction.values()){
-            println(direction)
-        }
-
-
+        var age = execute(15, Operation.Add(3))
+        println("Addition: age = $age")
+        age = execute(age, Operation.Subtract(3))
+        println("Soustraction: age = $age")
+        age = execute(age, Operation.Increment)
+        println("Incrementation: age = $age")
+        age = execute(age, Operation.Decrement)
+        println("Decrementation: age = $age")
 
     }
 }
