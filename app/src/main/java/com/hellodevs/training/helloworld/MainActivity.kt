@@ -1,19 +1,27 @@
 package com.hellodevs.training.helloworld
 
-//Kotlin+ : Sealed Class
-/*
-Ensembe de hierarchie de classe
-abstraite + membres abstraits
-Nombre d'enfants fixe et déclaré dans la classe
-Plusieurs instance possible de l'enfants
-*/
-
+//Kotlin+ : High Order Function 1/2
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import java.util.*
 
+fun filterInts(numbers: Array<Int>, param: (Int) -> Boolean): Array<Int> {
+    val filteredNumbers = mutableListOf<Int>()
 
-class MainActivity : AppCompatActivity(){
+    for (n in numbers) {
+        if (param(n)) {
+            filteredNumbers.add(n)
+        }
+    }
+
+    return filteredNumbers.toTypedArray()
+}
+
+fun positiveInt(n: Int): Boolean = n > 0
+fun evenInt(n: Int) : Boolean = (n % 2 == 0)
+
+class MainActivity : AppCompatActivity() {
 
     val TAG = "MainActivity"
 
@@ -21,14 +29,18 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var age = execute(15, Operation.Add(3))
-        println("Addition: age = $age")
-        age = execute(age, Operation.Subtract(3))
-        println("Soustraction: age = $age")
-        age = execute(age, Operation.Increment)
-        println("Incrementation: age = $age")
-        age = execute(age, Operation.Decrement)
-        println("Decrementation: age = $age")
+        val numbers = arrayOf(-99, 56, - 39, 11, 23, 78, 66, 0, -1, -30)
+
+        val positiveNumbers = filterInts(numbers, ::positiveInt)
+        val evenNumbers = filterInts(numbers, ::evenInt)
+
+        val positiveEvenNumbers = filterInts(
+            filterInts(numbers, ::positiveInt), ::evenInt
+        )
+
+        println("Nombre entiers ${positiveNumbers.contentToString()}")
+        println("Nombre pairs ${evenNumbers.contentToString()}")
+        println("Nombre entiers pairs  ${positiveEvenNumbers.contentToString()}")
 
     }
 }
