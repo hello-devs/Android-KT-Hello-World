@@ -1,25 +1,18 @@
 package com.hellodevs.training.helloworld
 
-//Kotlin+ : High Order Function 1/2
+//Kotlin+ : High Order Function Lambda 2/2
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import java.util.*
 
-fun filterInts(numbers: Array<Int>, param: (Int) -> Boolean): Array<Int> {
-    val filteredNumbers = mutableListOf<Int>()
-
-    for (n in numbers) {
-        if (param(n)) {
-            filteredNumbers.add(n)
-        }
+fun arrayAction(array: Array<Int>, action: (Int)-> Unit){
+    for (a in array){
+        action(a)
     }
 
-    return filteredNumbers.toTypedArray()
 }
-
-fun positiveInt(n: Int): Boolean = n > 0
-fun evenInt(n: Int) : Boolean = (n % 2 == 0)
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,16 +24,34 @@ class MainActivity : AppCompatActivity() {
 
         val numbers = arrayOf(-99, 56, - 39, 11, 23, 78, 66, 0, -1, -30)
 
-        val positiveNumbers = filterInts(numbers, ::positiveInt)
-        val evenNumbers = filterInts(numbers, ::evenInt)
+        numbers.filter { number -> number > 0}
+        //Si un seul parametre équivaut à:
+        numbers.filter { it > 0 }
 
-        val positiveEvenNumbers = filterInts(
-            filterInts(numbers, ::positiveInt), ::evenInt
-        )
+        arrayAction(numbers, {number -> println(number)})
+        //Si lambda est le dernier paramètre équivaut à:
+        arrayAction(numbers) { number -> println(number)}
+        //En fonction kotlin équivaut à:
+        numbers.forEach { println(it) }
+        
+        numbers.forEachIndexed { index, i -> println("index = $index, valeur = $i")  }
+        //On peut ignorer un paramètre avec l'underscore
+        numbers.forEachIndexed { _, i -> println("valeur = $i")  }
 
-        println("Nombre entiers ${positiveNumbers.contentToString()}")
-        println("Nombre pairs ${evenNumbers.contentToString()}")
-        println("Nombre entiers pairs  ${positiveEvenNumbers.contentToString()}")
+        //Dans ANDROID:
+        val button = Button(this)
+
+        ///////////////////////////////////////////////////////////////////
+        button.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(view: View?) {
+                println("click")
+            }
+        })
+        //équivaut avec une lambda à:
+        button.setOnClickListener { view -> println("click") }
+        //On peut simplifier:
+        button.setOnClickListener { println("Click") }
+        ///////////////////////////////////////////////////////////////////////
 
     }
 }
