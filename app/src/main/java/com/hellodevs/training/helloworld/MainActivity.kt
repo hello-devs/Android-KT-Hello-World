@@ -1,25 +1,34 @@
 package com.hellodevs.training.helloworld
 
-//Kotlin+ : Exception Throw Try/Catch/Finally 1/2
+//Kotlin+ : Exception Preconditions require() check() 2/2
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-fun divide(numerator: Int?, denominator: Int?) : Int {
-    return numerator!! / denominator!!
+fun validateName(name: String){
+    require(name.isNotEmpty())  {"empty name!"}
+    for (character in name){
+        require(character.isLetter()) {"Invalid name: non letter character ($character)"}
+    }
 }
 
-////////////////////////////////////////////////////
-class DivideException(message: String, cause: Exception)
-    : Exception(message, cause)
+fun sendGift(user: User){
+    require(user.email.isNotEmpty()) {"Email required"}
+    check(user.state == User.State.ACTIVE) {"Invalid user state: ${user.state}"}
+    println("sending gift to user: ${user.name} now!")
+}
 
-fun divideWithDivideException(numerator: Int?, denominator: Int?) : Int {
-    try {
-        return numerator!! / denominator!!
-    }catch (e: NullPointerException ){
-        throw DivideException("Opérande Null", e)
-    } catch (ae: ArithmeticException){
-        throw DivideException("Division par 0 interdite", ae)
+data class User(val name: String, val email: String){
+
+    enum class State {
+        NEW,
+        ACTIVE
+    }
+
+    var state: State = State.NEW
+
+    init {
+        validateName(name)
     }
 }
 
@@ -31,42 +40,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val numerator : Int? = 10
-        val denominator = 0
+        validateName("Jul")
 
-        try {
-            println("Début de l'opération...")
-            divide(numerator, denominator)
-            println("Opération effectuer avec succès")
-        }catch (e: NullPointerException){
-            println("${e.message}, cause: ${e.cause}")
-        }catch (ae: ArithmeticException){
-            println("${ae.message}, cause: ${ae.cause}")
-        }finally {
-            println("Fin de l'opération")
-        }
-
-        /////////////////////////////////////////////
-
-       try {
-           println("Opération 1:")
-           divideWithDivideException(10, 1)
-           //divideWithDivideException(10, 0)  //test erreur
-           println("Opération 2:")
-           divideWithDivideException(null, 10)
-           println("Opérations effectuer avec succès")
-       }catch (de: DivideException){
-           println("${de.message}, cause: ${de.cause}")
-       }finally {
-           println("Fin des opérations")
-       }
-
-
-
-
-
-
-
+//        val bobette = User("bob3773","bobette@mail.com")      //test require
+        val bobette = User("bobette","bobette@mail.com")        //test check
+        bobette.state = User.State.ACTIVE  //commenter pour tester l'exception
+        sendGift(bobette)
     }
 }
 
