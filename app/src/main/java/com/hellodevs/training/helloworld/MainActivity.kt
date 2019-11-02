@@ -1,28 +1,9 @@
 package com.hellodevs.training.helloworld
 
-//Kotlin+ : Elvis Operator
-
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import java.lang.IllegalArgumentException
 
-data class User(var name: String?, var email: String?){
-
-    fun updateName(name: String?){
-        this.name = name ?: "NoName"
-    }
-
-    fun updateEmail(email: String?){
-        this.email = email ?: throw IllegalArgumentException("Invalid Email")  //Permet aussi de jeter des exception
-    }
-
-    fun getInfoLength() {
-        val nameLength = name?.length ?: 0
-        val emailLength = email?.length ?: 0
-        val infoLength = nameLength + emailLength
-        println("Info length: $infoLength")
-    }
-}
+//Kotlin+ : Collection List 1/2
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,23 +13,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val name: String? = "Bob"
+        val numbers = mutableListOf<Int>(1, 2, 3)
+        numbers.add(42)
+        numbers.add(8)
 
-        val size = if (name != null) name.length else 0
-        //équivaut à:
-        val sizeElvis = name?.length ?: 0
+        val roNumbers: List<Int> = numbers
+        //roNumbers.add() n'existe pas pour une list immutable
 
-        val bob = User("bob", null)
-        bob.updateName(null)
-        println(bob)
+        val evenNumbers = numbers.filter { it % 2 == 0 }
+        println(evenNumbers)
 
-        bob.updateName("bob")
-        bob.updateEmail("bob@mail.com")
-        println(bob)
+        val names = listOf("Bob", null, "Bobette", null, "Mike")
+        println(names)
 
-//        bob.updateEmail(null) //Throw Exception
-        bob.getInfoLength()
+        val longNames = names.filterNotNull()
+            .filter { it.length > 3 }
+            .map { it.toUpperCase() }
+        println(longNames)
 
+        val containsLetterM : Boolean = names
+//            .take(3)  //renvoi false
+            .filterNotNull()
+            .any { it.toLowerCase().contains("m") }
+        println("Au moins un nom contient la letter \"m\": $containsLetterM")
 
     }
 }
