@@ -3,7 +3,7 @@ package com.hellodevs.training.helloworld
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-//Kotlin+ : Collection List 1/2
+//Kotlin+ : Collection Set 2/3
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,29 +13,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val numbers = mutableListOf<Int>(1, 2, 3)
-        numbers.add(42)
-        numbers.add(8)
+        val uniqueNames = mutableSetOf("Bob","Bobette")
+        println(uniqueNames)
 
-        val roNumbers: List<Int> = numbers
-        //roNumbers.add() n'existe pas pour une list immutable
+        uniqueNames.add("Joseph")
+        uniqueNames.add("Joe")
+        uniqueNames.add("Jane")
+        uniqueNames.add("Bob") //Pas de changement: déjà présent
+        println(uniqueNames)
+        println("Bob est il présent? ${uniqueNames.contains("Bob")}")
 
-        val evenNumbers = numbers.filter { it % 2 == 0 }
-        println(evenNumbers)
+        val roUniqueNames: Set<String> = uniqueNames //Non mutable
 
-        val names = listOf("Bob", null, "Bobette", null, "Mike")
-        println(names)
+        println("élément à l'indice 0: ${roUniqueNames.elementAt(0)}") //!!!Pas fiable dans un set
 
-        val longNames = names.filterNotNull()
-            .filter { it.length > 3 }
-            .map { it.toUpperCase() }
-        println(longNames)
+        val list: List<String> = roUniqueNames
+            .filter { it.startsWith("J") }
+            .sorted() //trie par ordre alphabetic
+        println(list)
 
-        val containsLetterM : Boolean = names
-//            .take(3)  //renvoi false
-            .filterNotNull()
-            .any { it.toLowerCase().contains("m") }
-        println("Au moins un nom contient la letter \"m\": $containsLetterM")
+
+
 
     }
 }
