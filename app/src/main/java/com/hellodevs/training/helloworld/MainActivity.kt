@@ -3,7 +3,7 @@ package com.hellodevs.training.helloworld
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-//Kotlin+ : Collection Set 2/3
+//Kotlin+ : Collection Map 3/3
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,28 +13,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val uniqueNames = mutableSetOf("Bob","Bobette")
-        println(uniqueNames)
+        val languages = mutableMapOf(
+            "Kotlin" to "Un super langage",
+            "Java" to "Un langage qui a fait son temps"
+        )
+        languages.put("C++","Une des origines du Java")
+        languages["C#"] = "Une dérivé du C"
+        println(languages)
+        println("valeur de la clef \"Ktolin\": ${languages["Kotlin"]}" )
 
-        uniqueNames.add("Joseph")
-        uniqueNames.add("Joe")
-        uniqueNames.add("Jane")
-        uniqueNames.add("Bob") //Pas de changement: déjà présent
-        println(uniqueNames)
-        println("Bob est il présent? ${uniqueNames.contains("Bob")}")
+        if (!languages.containsKey("Python")){
+            println("Python n'est pas présent!")
+        }
 
-        val roUniqueNames: Set<String> = uniqueNames //Non mutable
+        for (key in languages.keys){
+            println("Clef: $key")
+        }
+        
+        for (entry in languages.entries){
+            println("Clef: ${entry.key} => Valeur: ${entry.value} ")
+        }
 
-        println("élément à l'indice 0: ${roUniqueNames.elementAt(0)}") //!!!Pas fiable dans un set
+        for ((key, value) in languages){
+            println("Clef: $key ===> Valeur: $value ")
+        }
 
-        val list: List<String> = roUniqueNames
-            .filter { it.startsWith("J") }
-            .sorted() //trie par ordre alphabetic
-        println(list)
+        val nonCppLanguages = languages
+            .filterNot { it.key == "C++" } //équivaut à filter { it.key != "C++" }
+            .mapValues { it.value.toUpperCase() }
 
-
-
-
+        println("nonCppLanguages: $nonCppLanguages")
     }
 }
 
