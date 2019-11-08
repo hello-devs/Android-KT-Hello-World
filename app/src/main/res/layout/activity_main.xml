@@ -7,9 +7,10 @@
     tools:context="com.hellodevs.training.helloworld.MainActivity" >
 
     <TextView
+        android:id="@+id/hello_devs"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello Devs"
+        android:text="Hello Devs!"
         android:gravity="center" />
 
 </RelativeLayout>
