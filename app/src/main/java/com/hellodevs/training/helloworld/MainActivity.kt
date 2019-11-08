@@ -5,36 +5,36 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-//Kotlin+ : Lazy init
+//Kotlin+ : const
 /*
-Variable immutable initialisée lors de sa premiere utilisation
+-Déclaration en dehors d'une classe ou dans un companion object
+-La différence avec val seul: la valeur est assignée à la compilation (avant le lancement de l'app)
+-De type primitif
  */
+
+//Déclaration en dehors de classe
+const val VERSION : Int = 42
+const val NAME : String = "Bob"
 
 class MainActivity : AppCompatActivity() {
 
     val TAG = "MainActivity"
 
-    val helloDevsLazy: TextView by lazy {
-        println("lazy init")
-        hello_devs
+    //Déclaration en companion object
+    companion object{
+        const val TEST = "TEST OK!"
     }
 
-    lateinit var helloDevsLate : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        println("Lazy: ${helloDevsLazy.text}")  //Première appel init de la variable
+        val localVersion = VERSION
+        val localTest = MainActivity.TEST
 
-//        helloDevsLate = hello_devs
 
-    }
 
-    override fun onResume() {
-        super.onResume()
-        println("Lazy: ${helloDevsLazy.text}")  //Deuxième appel la variable a déjà été init
-//        println("Late: ${helloDevsLate.text}")  //Génère une exception si on oublie d'initialiser
     }
 }
 
