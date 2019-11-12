@@ -4,7 +4,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import java.io.File
 
-//Kotlin Extension de fonction : let
+//Kotlin Extension de fonction : apply
+
+data class User(var name: String = "", var age: Int = 0)
+
+fun createDirectory(path: String) : File{
+    val file = File(path)
+    file.mkdir()
+    return file
+}
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,28 +22,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        var file = File("config")
-//        if (file.exists()){
-//
-//        }
+        //Ex1
+        val longUser = User()
+        longUser.name = "LongBob"
+        longUser.age = 15
 
-        //Restreint au bloc
-        File("config").let { file ->
-            if (file.exists()){
-                println("$file existe")
-            }else{
-                file.createNewFile()
-                println("$file fichier crée")
-            }
+        val shortUser = User().apply {
+            name = "ShortBob"
+            age = 5
         }
 
-        //Remplace un if
-        var file: File? = null
-//        file = File("test") //non null
-
-        file?.let { file ->
-            println("$file n'est pas null")
-        }
+        //Ex2
+        //En déclarant un fct
+        val longHome = createDirectory("longHome")
+        //Sans utiliser la fct:
+        val shortHome = File("shortHome").apply { mkdir() }
 
     }
 }
