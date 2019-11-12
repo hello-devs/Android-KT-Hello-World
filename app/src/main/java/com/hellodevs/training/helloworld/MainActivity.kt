@@ -1,11 +1,12 @@
 package com.hellodevs.training.helloworld
 
-import android.graphics.Color
-import android.graphics.Paint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-//Kotlin Extension de fonction : with
+//Kotlin Extension de fonction : run
+/*
+Combinaison de let et with
+ */
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,19 +16,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val paint = Paint()
-        paint.alpha = 100
-        paint.color = Color.RED
-        paint.strokeWidth = 2.0f
+        val sb = StringBuilder()
+        sb.append("Hello! ")
+        sb.append("Kotlin")
 
-        //équivaut à
-        with(paint){
-            alpha = 100
-            color = Color.BLUE
-            strokeWidth = 1.0f
+        val sentence = sb.toString()
+        println(sentence)
+
+        val shorterSentence = StringBuilder().run {
+            append("hello! ")
+            append("rapide run()")
+            toString()
         }
-
-
+        println(shorterSentence)
     }
 }
 
