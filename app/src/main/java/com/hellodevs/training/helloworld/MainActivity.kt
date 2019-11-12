@@ -1,18 +1,11 @@
 package com.hellodevs.training.helloworld
 
+import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import java.io.File
 
-//Kotlin Extension de fonction : apply
-
-data class User(var name: String = "", var age: Int = 0)
-
-fun createDirectory(path: String) : File{
-    val file = File(path)
-    file.mkdir()
-    return file
-}
+//Kotlin Extension de fonction : with
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,21 +15,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Ex1
-        val longUser = User()
-        longUser.name = "LongBob"
-        longUser.age = 15
+        val paint = Paint()
+        paint.alpha = 100
+        paint.color = Color.RED
+        paint.strokeWidth = 2.0f
 
-        val shortUser = User().apply {
-            name = "ShortBob"
-            age = 5
+        //équivaut à
+        with(paint){
+            alpha = 100
+            color = Color.BLUE
+            strokeWidth = 1.0f
         }
 
-        //Ex2
-        //En déclarant un fct
-        val longHome = createDirectory("longHome")
-        //Sans utiliser la fct:
-        val shortHome = File("shortHome").apply { mkdir() }
 
     }
 }
