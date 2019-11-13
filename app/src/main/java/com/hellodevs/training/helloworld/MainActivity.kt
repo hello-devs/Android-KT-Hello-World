@@ -1,18 +1,18 @@
 package com.hellodevs.training.helloworld
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.IOException
-import java.util.*
+import kotlinx.android.synthetic.main.activity_main.*
 
-//Kotlin Extension de fonction : use
+//ANDROID+ Context et Application
 /*
-Ferme une classe qui implement l'interface Closeable
+Classe abstraite local (ex: Activity) ou global (ex:Application)
+Si Objet attaché à la vie de l'activity utiliser context activity
+Si Objet attaché à la vie de l'application utiliser context application (ex connection a une bdd)
  */
-
 class MainActivity : AppCompatActivity() {
 
     val TAG = "MainActivity"
@@ -21,42 +21,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val properties = Properties()
-        with(properties){
-            setProperty("name", "Bob")
-            setProperty("age", "10")
-        }
+        Log.i(TAG, "onCreate()")
 
-        val file = File("config.properties")
+        val textViewActivity = TextView(this)
+        textViewActivity.text = "Activity Context"
+        textViewActivity.textSize = 30f
 
-        /////////////Kotlin Style
-        FileOutputStream(file).use { fileOutputStream ->
-            properties.store(fileOutputStream, null)
-        }
+        val textViewApp = TextView(applicationContext)
+        textViewApp.text = "Application Context"
+        textViewApp.textSize = 30f
 
-        val loadProperties = properties.apply {
-            FileInputStream(file).use { load(it) }
-        }
+        val layout: LinearLayout = root
+        layout.addView(textViewActivity)
+        layout.addView(textViewApp) //Le theme ne sera pas appliqué
+    }
 
-        /////////////Java Style
-        var fileOutputStream : FileOutputStream? = null
-        try {
-            fileOutputStream = FileOutputStream(file)
-            properties.store(fileOutputStream, null)
-        }catch (e: IOException){
-
-        }finally {
-            if (fileOutputStream != null){
-                try {
-                    fileOutputStream.close()
-                }catch (e: IOException){
-
-                }
-            }
-        }
-        //.....
-        /////////////////////////////////////////////////
-
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i(TAG, "onDestroy()")
     }
 }
 

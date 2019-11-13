@@ -5,19 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/custom_theme_color</item>
         <item name="android:colorBackground">@color/custom_theme_color</item>
-    </style>
-
-    <style name="TitleFont">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">20sp</item>
-    </style>
-
-    <style name="TitleFont.Red">  <!-- heritage de style -->
         <item name="android:textColor">#f00</item>
-    </style>
-
-    <style name="FormEditText">
-        <item name="android:layout_width">200dp</item>
     </style>
 
 </resources>
