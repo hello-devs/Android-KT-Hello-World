@@ -6,4 +6,8 @@
     <string name="help">Aide</string>
     <string name="delete">Supprimer</string>
     <string name="favorite">favoris</string>
+    <string name="first_btn_text">Bouton 1</string>
+    <string name="second_btn_text">Bouton 2</string>
+    <string name="third_btn_text">Bouton 3</string>
+    <string name="fourth_btn_text">Bouton 4</string>
 </resources>
