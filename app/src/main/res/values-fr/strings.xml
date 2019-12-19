@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Recettes</string>
+    <string name="title_pancakes_recipe">Recette de pâte à crèpes</string>
+    <string name="label_ingredients">Ingrédients</string>
+    <string name="label_flour">%1$dg de farine</string>
+
+    <plurals name="number_of_eggs">
+        <item quantity="one">%d oeuf</item>
+        <item quantity="other">%d oeufs</item>
+    </plurals>
+
+    <string name="button_share">Partager</string>
+    <string name="button_save">Sauvegarder</string>
+</resources>

@@ -1,13 +1,14 @@
 <resources>
-    <string name="app_name">Hello World</string>
-    <string name="btn_show_dialog">Show Dialog</string>
-    <string name="add">Ajouter</string>
-    <string name="save">Sauvegarder</string>
-    <string name="help">Aide</string>
-    <string name="delete">Supprimer</string>
-    <string name="favorite">favoris</string>
-    <string name="first_btn_text">Bouton 1</string>
-    <string name="second_btn_text">Bouton 2</string>
-    <string name="third_btn_text">Bouton 3</string>
-    <string name="fourth_btn_text">Bouton 4</string>
+    <string name="app_name">Recipies</string>
+    <string name="title_pancakes_recipe">Pancakes Recipe</string>
+    <string name="label_ingredients">Ingredients</string>
+    <string name="label_flour">%1$dg of flour</string>
+
+    <plurals name="number_of_eggs">
+        <item quantity="one">%d egg</item>
+        <item quantity="other">%d eggs</item>
+    </plurals>
+
+    <string name="button_share">Share</string>
+    <string name="button_save">Save</string>
 </resources>

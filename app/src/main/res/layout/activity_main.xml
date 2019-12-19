@@ -5,34 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.hellodevs.training.helloworld.MainActivity"
-    android:orientation="vertical">
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@mipmap/ic_launcher"/>
+    android:orientation="vertical"
+    android:paddingHorizontal="10dp">
 
-    <Button
-        android:id="@+id/first_button"
-        android:layout_height="wrap_content"
+
+    <TextView
         android:layout_width="wrap_content"
-        android:text="@string/first_btn_text"/>
-
-    <Button
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/second_btn_text"/>
+        android:layout_marginBottom="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="@string/title_pancakes_recipe" />
 
-    <Button
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/third_btn_text"/>
+        android:text="@string/label_ingredients"/>
 
-    <Button
+    <TextView
+        android:id="@+id/label_flour"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/label_flour"
+        tools:text="300g de farine" />
+
+    <TextView
+        android:id="@+id/label_eggs"
         android:layout_width="wrap_content"
-        android:text="@string/fourth_btn_text"/>
+        android:layout_height="wrap_content"
+        tools:text="1 oeuf"/>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_save"/>
 
+        <Button
+            android:id="@+id/share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/save"
+            android:text="@string/button_share"
+            android:layout_toEndOf="@id/save" />
+
+    </RelativeLayout>
 
 </LinearLayout>

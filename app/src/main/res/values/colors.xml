@@ -4,5 +4,5 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorAlert">#F44336</color>
-    <color name="custom_theme_color">#313131</color>
+    <color name="custom_theme_color">#FFFFFF</color>
 </resources>
