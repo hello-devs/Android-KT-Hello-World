@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Recipies</string>
+    <string name="app_name">Hello World</string>
     <string name="title_pancakes_recipe">Pancakes Recipe</string>
     <string name="label_ingredients">Ingredients</string>
     <string name="label_flour">%1$dg of flour</string>
@@ -11,4 +11,7 @@
 
     <string name="button_share">Share</string>
     <string name="button_save">Save</string>
+    <string name="blue_fragment">Blue Fragment</string>
+    <string name="green_fragment">Green Fragment</string>
+    <string name="blue_fragment_btn">Click!</string>
 </resources>

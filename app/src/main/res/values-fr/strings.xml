@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Recettes</string>
+    <string name="app_name">Hello World</string>
     <string name="title_pancakes_recipe">Recette de pâte à crèpes</string>
     <string name="label_ingredients">Ingrédients</string>
     <string name="label_flour">%1$dg de farine</string>
@@ -11,4 +11,7 @@
 
     <string name="button_share">Partager</string>
     <string name="button_save">Sauvegarder</string>
+    <string name="blue_fragment">Fragment bleu</string>
+    <string name="green_fragment">Fragment vert</string>
+    <string name="blue_fragment_btn">Clic!</string>
 </resources>
