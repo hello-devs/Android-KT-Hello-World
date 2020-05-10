@@ -10,6 +10,13 @@ import androidx.fragment.app.Fragment
 
 class GreenFragment : Fragment() {
 
+    interface GreenFragmentListener{
+        fun onClick()
+    }
+
+    var listener: GreenFragmentListener? = null
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -19,6 +26,7 @@ class GreenFragment : Fragment() {
 
         view.findViewById<Button>(R.id.gf_button).setOnClickListener {
             Toast.makeText(activity, getText(R.string.blue_fragment_btn), Toast.LENGTH_SHORT).show()
+            listener?.onClick()
         }
 
         return view
